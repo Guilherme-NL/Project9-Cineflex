@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function HomePage({ filmList }) {
   return (
@@ -6,7 +7,11 @@ export default function HomePage({ filmList }) {
       <Title>Selecione o filme</Title>
       <Movies>
         {filmList.map((film) => {
-          return <img src={film.posterURL} alt={film.title} />;
+          return (
+            <Link to={`/sessoes/${film.id}`} key={film.id}>
+              <img src={film.posterURL} alt={film.title} />
+            </Link>
+          );
         })}
       </Movies>
     </Container>

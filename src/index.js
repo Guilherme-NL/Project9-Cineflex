@@ -2,10 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactDom from "react-dom";
 import axios from "axios";
 import React from "react";
-import styled from "styled-components";
+import GlobalStyle from "./global";
 
 import TopBar from "./Top";
 import HomePage from "./homepage";
+import FilmePage from "./filmepage";
+import SessaoPage from "./sessaopage";
 
 export default function App() {
   const [filmList, setFilmList] = React.useState([]);
@@ -17,21 +19,18 @@ export default function App() {
       });
   }, []);
   console.log(filmList);
+
   return (
     <BrowserRouter>
-      <GlobalStyle>
-        <TopBar />
-        <Routes>
-          <Route path="/" element={<HomePage filmList={filmList} />} />
-        </Routes>
-      </GlobalStyle>
+      <GlobalStyle />
+      <TopBar />
+      <Routes>
+        <Route path="/" element={<HomePage filmList={filmList} />} />
+        <Route path="/sessoes/:idFilme" element={<FilmePage />} />
+        <Route path="/assentos/:idSessao" element={<SessaoPage />} />
+      </Routes>
     </BrowserRouter>
   );
 }
-
-const GlobalStyle = styled.div`
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-`;
 
 ReactDom.render(<App />, document.querySelector(".root"));
