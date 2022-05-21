@@ -34,9 +34,9 @@ export default function FilmePage() {
               <Sessoes>
                 {filmDays.showtimes.map((filmShowtimes) => {
                   return (
-                    <Link to={`/assentos/${filmShowtimes.id}`}>
+                    <StyledLink to={`/assentos/${filmShowtimes.id}`}>
                       <div key={filmShowtimes.id}>{filmShowtimes.name}</div>
-                    </Link>
+                    </StyledLink>
                   );
                 })}
               </Sessoes>
@@ -91,4 +91,8 @@ const Sessoes = styled.div`
     justify-content: center;
     margin-right: 8px;
   }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;

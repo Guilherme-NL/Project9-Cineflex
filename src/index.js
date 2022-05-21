@@ -8,6 +8,7 @@ import TopBar from "./Top";
 import HomePage from "./homepage";
 import FilmePage from "./filmepage";
 import SessaoPage from "./sessaopage";
+import Confirmation from "./confirmation";
 
 export default function App() {
   const [filmList, setFilmList] = React.useState([]);
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/" element={<HomePage filmList={filmList} />} />
         <Route path="/sessoes/:idFilme" element={<FilmePage />} />
         <Route path="/assentos/:idSessao" element={<SessaoPage />} />
+        <Route path="/sucesso" element={<Confirmation />} />
       </Routes>
     </BrowserRouter>
   );
