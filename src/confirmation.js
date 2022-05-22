@@ -1,7 +1,18 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Confirmation({ name, cpf, seat, filmSeats }) {
-  console.log(name, cpf);
+export default function Confirmation({
+  name,
+  cpf,
+  setName,
+  setCpf,
+  seat,
+  filmSeats,
+}) {
+  function clearInputs() {
+    setName("");
+    setCpf("");
+  }
   return (
     <Container>
       <Title>Pedido feito com sucesso!</Title>
@@ -23,6 +34,11 @@ export default function Confirmation({ name, cpf, seat, filmSeats }) {
         <h2>Nome: {name}</h2>
         <h2>CPF: {cpf}</h2>
       </Comprador>
+      <Home>
+        <Link to="/">
+          <button onClick={clearInputs}>Voltar para Home</button>
+        </Link>
+      </Home>
     </Container>
   );
 }
@@ -59,9 +75,25 @@ const Title = styled.div`
 const Filme = styled.div`
   margin-bottom: 25px;
 `;
+
 const Ingressos = styled.div`
   margin-bottom: 25px;
 `;
+
 const Comprador = styled.div`
   margin-bottom: 25px;
+`;
+
+const Home = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+
+  button {
+    width: 225px;
+    height: 42px;
+    background-color: #e8833a;
+    border-radius: 3px;
+  }
 `;

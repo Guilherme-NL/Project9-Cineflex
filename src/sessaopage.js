@@ -59,6 +59,8 @@ export default function SessaoPage({
         isSelected: !updatedSeats.seats[index].isSelected,
       };
       setFilmSeats(updatedSeats);
+    } else {
+      alert("Esse assento não está disponível");
     }
   }
 

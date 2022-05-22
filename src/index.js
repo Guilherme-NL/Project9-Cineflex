@@ -65,6 +65,8 @@ export default function App() {
               <Confirmation
                 name={name}
                 cpf={cpf}
+                setName={setName}
+                setCpf={setCpf}
                 seat={seat}
                 filmSeats={filmSeats}
               />
