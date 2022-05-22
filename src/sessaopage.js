@@ -5,14 +5,19 @@ import React from "react";
 
 import Footer from "./footer";
 
-export default function SessaoPage() {
+export default function SessaoPage({
+  filmSession,
+  name,
+  cpf,
+  setName,
+  setCpf,
+  setSeat,
+  filmSeats,
+  setFilmSeats,
+}) {
   const sessaoID = useParams();
   const navigate = useNavigate();
   console.log(sessaoID);
-
-  const [filmSeats, setFilmSeats] = React.useState([]);
-  const [name, setName] = React.useState("");
-  const [cpf, setCpf] = React.useState("");
 
   React.useEffect(() => {
     axios
@@ -30,6 +35,7 @@ export default function SessaoPage() {
   function sendSeats() {
     const filteredSeats = filmSeats.seats.filter((seat) => seat.isSelected);
     const ids = filteredSeats.map((seat) => seat.id);
+    setSeat(filteredSeats.map((name) => name.name));
     const body = {
       ids,
       name,
@@ -42,8 +48,6 @@ export default function SessaoPage() {
         body
       )
       .then(navigate("/sucesso"));
-    setName("");
-    setCpf("");
   }
 
   function handleSeatSelect(seat) {
@@ -107,6 +111,7 @@ export default function SessaoPage() {
             <button onClick={sendSeats}>Reservar assentos(s)</button>
           </Button>
         </Form>
+        <Footer session={filmSeats} filmSession={filmSession} />
       </Container>
     );
   } else {
@@ -255,6 +260,7 @@ const Button = styled.div`
     height: 42px;
     font-size: 18px;
     background-color: #e8833a;
+    border-radius: 3px;
     color: #ffffff;
   }
 `;

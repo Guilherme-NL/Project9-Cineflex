@@ -1,10 +1,18 @@
 import styled from "styled-components";
 
-export default function Footer({ filmSession }) {
+export default function Footer({ session, filmSession }) {
+  console.log("day");
   return (
     <Container>
       <img src={filmSession.posterURL} alt={filmSession.title} />
-      <h2>{filmSession.title}</h2>
+      <Session>
+        <h2>{filmSession.title}</h2>
+        {session && (
+          <h2>
+            {session.day.weekday} - {session.name}
+          </h2>
+        )}
+      </Session>
     </Container>
   );
 }
@@ -37,4 +45,10 @@ const Container = styled.div`
     color: #293845;
     font-weight: 400;
   }
+`;
+
+const Session = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;

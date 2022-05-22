@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 
 import Footer from "./footer";
 
-export default function FilmePage() {
+export default function FilmePage({ filmSession, setFilmSession }) {
   const filmID = useParams();
   console.log(filmID);
-  const [filmSession, setFilmSession] = React.useState([]);
 
   React.useEffect(() => {
     axios

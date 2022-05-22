@@ -11,6 +11,13 @@ import SessaoPage from "./sessaopage";
 import Confirmation from "./confirmation";
 
 export default function App() {
+  const [filmSession, setFilmSession] = React.useState([]);
+  const [name, setName] = React.useState("");
+  const [cpf, setCpf] = React.useState("");
+  const [seat, setSeat] = React.useState([]);
+  const [filmSeats, setFilmSeats] = React.useState([]);
+  console.log(filmSeats);
+
   const [filmList, setFilmList] = React.useState([]);
   React.useEffect(() => {
     axios
@@ -21,18 +28,54 @@ export default function App() {
   }, []);
   console.log(filmList);
 
-  return (
-    <BrowserRouter>
-      <GlobalStyle />
-      <TopBar />
-      <Routes>
-        <Route path="/" element={<HomePage filmList={filmList} />} />
-        <Route path="/sessoes/:idFilme" element={<FilmePage />} />
-        <Route path="/assentos/:idSessao" element={<SessaoPage />} />
-        <Route path="/sucesso" element={<Confirmation />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  if (filmList.length !== 0) {
+    return (
+      <BrowserRouter>
+        <GlobalStyle />
+        <TopBar />
+        <Routes>
+          <Route path="/" element={<HomePage filmList={filmList} />} />
+          <Route
+            path="/sessoes/:idFilme"
+            element={
+              <FilmePage
+                filmSession={filmSession}
+                setFilmSession={setFilmSession}
+              />
+            }
+          />
+          <Route
+            path="/assentos/:idSessao"
+            element={
+              <SessaoPage
+                filmSession={filmSession}
+                name={name}
+                cpf={cpf}
+                setName={setName}
+                setCpf={setCpf}
+                setSeat={setSeat}
+                filmSeats={filmSeats}
+                setFilmSeats={setFilmSeats}
+              />
+            }
+          />
+          <Route
+            path="/sucesso"
+            element={
+              <Confirmation
+                name={name}
+                cpf={cpf}
+                seat={seat}
+                filmSeats={filmSeats}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    );
+  } else {
+    return <div>Carregando</div>;
+  }
 }
 
 ReactDom.render(<App />, document.querySelector(".root"));
