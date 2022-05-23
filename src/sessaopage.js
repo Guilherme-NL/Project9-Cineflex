@@ -17,7 +17,6 @@ export default function SessaoPage({
 }) {
   const sessaoID = useParams();
   const navigate = useNavigate();
-  console.log(sessaoID);
 
   React.useEffect(() => {
     axios

@@ -8,7 +8,6 @@ import Footer from "./footer";
 
 export default function FilmePage({ filmSession, setFilmSession }) {
   const filmID = useParams();
-  console.log(filmID);
 
   React.useEffect(() => {
     axios

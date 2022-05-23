@@ -16,7 +16,6 @@ export default function App() {
   const [cpf, setCpf] = React.useState("");
   const [seat, setSeat] = React.useState([]);
   const [filmSeats, setFilmSeats] = React.useState([]);
-  console.log(filmSeats);
 
   const [filmList, setFilmList] = React.useState([]);
   React.useEffect(() => {
@@ -26,7 +25,6 @@ export default function App() {
         setFilmList(response.data);
       });
   }, []);
-  console.log(filmList);
 
   if (filmList.length !== 0) {
     return (

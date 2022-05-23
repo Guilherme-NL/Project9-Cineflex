@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export default function Footer({ session, filmSession }) {
-  console.log("day");
   return (
     <Container>
       <img src={filmSession.posterURL} alt={filmSession.title} />
